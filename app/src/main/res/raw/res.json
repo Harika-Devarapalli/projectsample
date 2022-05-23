@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Shake And Shack",
+    "address": "Vignan University",
+    "delivery_charge": 5,
+    "image": "https://image.shutterstock.com/image-vector/landscape-buildings-restaurant-cafe-cityscape-260nw-246754519.jpg",
+    "hours": {
+      "Sunday": "Holiday",
+      "Monday": "7:30 AM-5:00 PM",
+      "Tuesday": "7:30 AM-5:00 PM",
+      "Wednesday": "7:30 AM-5:00 PM",
+      "Thrusday": "7:30 AM-5:00 PM",
+      "Friday": "7:30 AM-5:00 PM",
+      "Saturday": "7:30 AM-5:00 PM"
+    },
+    "menu": [
+      {
+        "item_name": "Veg Pizza",
+        "item_price": 129,
+        "url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fpizza-black-background&psig=AOvVaw2vZ5oPxi_uT3NoMFjZPCbF&ust=1650105221130000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMCS8I_vlfcCFQAAAAAdAAAAABAD"
+      },
+      {
+        "item_name": "Veg Hot &Spicy Pizza",
+        "item_price": 139,
+        "url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fpizza-black-background&psig=AOvVaw2vZ5oPxi_uT3NoMFjZPCbF&ust=1650105221130000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMCS8I_vlfcCFQAAAAAdAAAAABAD"
+      },
+      {
+        "item_name": "Crunchy Veg Wrap",
+        "item_price": 60,
+        "url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dreamstime.com%2Fphotos-images%2Fwrap-food-black.html&psig=AOvVaw0wKKmfVdvBHniI2QlPhOS3&ust=1650105874926000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCKD5s8bxlfcCFQAAAAAdAAAAABAD"
+      },
+      {
+        "item_name": "Spicy Paneer Wrap",
+        "item_price": 70,
+        "url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dreamstime.com%2Fphotos-images%2Fwrap-food-black.html&psig=AOvVaw0wKKmfVdvBHniI2QlPhOS3&ust=1650105874926000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCKD5s8bxlfcCFQAAAAAdAAAAABAD"
+      },
+      {
+        "item_name": "Pink Penny Berry",
+        "item_price": 119,
+        "url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dreamstime.com%2Froyalty-free-stock-images-strawberry-chocolate-milk-shake-fresh-mint-black-background-image31859729&psig=AOvVaw2FAg77ZZAspEOuD56HDwUU&ust=1650106026895000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMi22Y7ylfcCFQAAAAAdAAAAABAD"
+      },
+      {
+        "item_name": "MilkShakes",
+        "item_price": 119,
+        "url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dreamstime.com%2Froyalty-free-stock-images-strawberry-chocolate-milk-shake-fresh-mint-black-background-image31859729&psig=AOvVaw2FAg77ZZAspEOuD56HDwUU&ust=1650106026895000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMi22Y7ylfcCFQAAAAAdAAAAABAD"
+      }
+    ]
+  }
+]
+

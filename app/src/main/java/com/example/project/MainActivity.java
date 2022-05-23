@@ -1,6 +1,7 @@
 package com.example.project;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -8,17 +9,24 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.Window;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+
 public class MainActivity extends AppCompatActivity {
 
     com.google.android.material.bottomnavigation.BottomNavigationView bottomNavigationView;
+    ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //getSupportActionBar().hide();
+
+
+        //actionBar.setTitle("Home");
 
         int[][] states = new int[][] {
                 new int[] {android.R.attr.state_checked},
@@ -64,22 +72,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment = new SearchFragment();
+                //ActionBar actionBar = getSupportActionBar();
                 switch (item.getItemId()) {
                     case R.id.item_cart:
                         bottomNavigationView.setItemIconTintList( new ColorStateList(states, colorsRed));
                         fragment = new ShopFragment();
+
+                        //actionBar.setTitle("Cart");
                         break;
                     case R.id.item_home:
                         bottomNavigationView.setItemIconTintList( new ColorStateList(states, colorsPurple));
                         fragment = new RecommendedFragments();
+                        //actionBar.setTitle("Restaurnt List");
                         break;
                     case R.id.item_search:
                         bottomNavigationView.setItemIconTintList( new ColorStateList(states, colorsCyan));
                         fragment = new SearchFragment();
+                        //actionBar.setTitle("Restaurnt List");
                         break;
                     case R.id.item_profile:
                         bottomNavigationView.setItemIconTintList( new ColorStateList(states, colorsGreen));
                         fragment = new ProfileFragment();
+                        //actionBar.setTitle("User Profile");
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.body,fragment)
