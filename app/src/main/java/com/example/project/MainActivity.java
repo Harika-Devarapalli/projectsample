@@ -13,6 +13,9 @@ import android.view.Window;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.appcheck.FirebaseAppCheck;
+import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -28,8 +31,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //getSupportActionBar().hide();
 
+        FirebaseApp.initializeApp(/*context=*/ this);
+        FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
+        firebaseAppCheck.installAppCheckProviderFactory(
+                SafetyNetAppCheckProviderFactory.getInstance());
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser()==null){
-            startActivity(new Intent(getApplicationContext(),      LoginActivity.class        ));
+            startActivity(new Intent(getApplicationContext(),  LoginActivity.class        ));
             finish();
         }else{
             FirebaseUser currentUser = firebaseAuth.getCurrentUser();

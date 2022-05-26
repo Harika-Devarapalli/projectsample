@@ -7,17 +7,85 @@
     android:orientation="vertical"
     tools:context=".RestarunantMenu">
 
-    <androidx.appcompat.widget.Toolbar
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize"-->
+<!--        android:background="#DBEBF8"-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:elevation="5dp"/>-->
+    <TextView
+        android:layout_gravity="right"
+        android:gravity="right"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#DBEBF8"
-        android:id="@+id/toolbar"
-        android:elevation="5dp"/>
+        android:layout_height="wrap_content"
+        android:text="ShakeAndShake"
+        android:fontFamily="@font/ubuntu"
+        android:textSize="42dp"
+        android:layout_marginTop="10dp"
+
+        android:layout_marginRight="10dp"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/food_menu"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_address"
+            />
+        <TextView
+            android:text="MHP"
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/app_name"
+            />
+        <TextView android:layout_height="0dp"
+            android:layout_width="fill_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:text="4.5"
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/app_name"
+            />
+
+        <ImageView
+            android:id="@+id/food_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/app_name"
+            android:padding="5dp"
+            android:src="@drawable/ic_rating"
+
+            />
+
+
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_margin="7dp"
         android:layout_marginTop="14dp"
         android:paddingBottom="65dp"

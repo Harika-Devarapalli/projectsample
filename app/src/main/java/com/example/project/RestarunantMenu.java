@@ -35,9 +35,9 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
         setContentView(R.layout.activity_restarunant_menu);
         RestaurantModel restaurantData=getIntent().getParcelableExtra("RestaurantModel");
 
-        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(restaurantData.getName());
-        name = restaurantData.getName();
+//        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+//        toolbar.setTitle(restaurantData.getName());
+//        name = restaurantData.getName();
 
 
         imageList = new HashMap<>();
