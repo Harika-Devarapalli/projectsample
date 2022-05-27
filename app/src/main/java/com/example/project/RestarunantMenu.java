@@ -37,7 +37,7 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
 
 //        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
 //        toolbar.setTitle(restaurantData.getName());
-//        name = restaurantData.getName();
+        name = restaurantData.getName();
 
 
         imageList = new HashMap<>();
