@@ -5,30 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
-    tools:context=".RestarunantMenu">
+    tools:context=".CheckoutActivity">
 
-<!--    <androidx.appcompat.widget.Toolbar-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="?attr/actionBarSize"-->
-<!--        android:background="#DBEBF8"-->
-<!--        android:id="@+id/toolbar"-->
-<!--        android:elevation="5dp"/>-->
     <TextView
         android:layout_gravity="right"
-        android:gravity="right"
+        android:gravity="left"
+        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ShakeAndShake"
         android:fontFamily="@font/ubuntu"
-        android:textSize="42dp"
+        android:textSize="25dp"
         android:layout_marginTop="10dp"
         android:id="@+id/restaurant_title"
         android:layout_marginRight="10dp"
         />
 
+    <TextView
+        android:layout_gravity="right"
+        android:gravity="left"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Order"
+        android:fontFamily="@font/ubuntu"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        />
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/darker_gray"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/checkout_item_list"
+        android:divider="@null"
+        android:dividerHeight="0sp"/>
 
     <LinearLayout
+        android:paddingTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -39,71 +61,49 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_address"
+            android:layout_gravity="center"
             />
         <TextView
-            android:text="MHP"
+            android:text="Address :"
             android:textSize="16dp"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:contentDescription="@string/app_name"
             android:id="@+id/restaurantAddress"
+            android:layout_gravity="center"
             />
-        <TextView android:layout_height="0dp"
+
+        <EditText
             android:layout_width="fill_parent"
-            android:layout_weight="1" />
-
-        <TextView
-            android:text="4.5"
-            android:textSize="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/app_name"
-            android:id="@+id/Restaurant_Rating"
-            />
-
-        <ImageView
-            android:id="@+id/food_cart"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="@string/app_name"
-            android:padding="5dp"
-            android:src="@drawable/ic_rating"
-
-            />
-
-
+            android:layout_marginLeft="20dp"
+            android:id="@+id/checkout_address"/>
     </LinearLayout>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:layout_margin="7dp"
-        android:layout_marginTop="14dp"
-        />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:text="PAY USING :"
+            android:textSize="20dp"/>
+
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
         android:layout_height="52dp"
-        android:layout_marginBottom="5dp"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         app:cardElevation="25dp"
         app:cardCornerRadius="8dp"
         app:cardBackgroundColor="@color/b2"
-        android:id="@+id/submit"
-        android:layout_margin="10dp">
-
+        android:layout_margin="10dp"
+        >
         <LinearLayout
             android:layout_margin="5dp"
             android:layout_width="match_parent"
@@ -117,8 +117,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/item_count_update"
-                    android:text="0 ITEMS"
+                    android:text="TOTAL"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
                     android:textSize="14dp"/>
@@ -139,36 +138,23 @@
                         android:layout_marginTop="6dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:id="@+id/items_total_cost"
+                        android:text="489"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/white"
                         android:textSize="18dp"/>
-
-
-                    <TextView
-                        android:layout_marginTop="6dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="PLUS DELIVERY CHARGES"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="@color/white"
-                        android:textSize="10dp"/>
 
                 </LinearLayout>
 
 
             </LinearLayout>
 
-            <TextView android:layout_height="0dp"
-                android:layout_width="fill_parent"
-                android:layout_weight="1" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="CHECK OUT "
-                android:layout_marginLeft="10dp"
+                android:text="PAY "
+                android:layout_marginLeft="120dp"
                 android:textColor="@color/white"
                 android:textSize="14dp"/>
             <ImageView
@@ -179,10 +165,11 @@
                 android:textColor="@color/white"
                 />
 
-        </LinearLayout> </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
 
 
 
 
-
+    </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 </LinearLayout>

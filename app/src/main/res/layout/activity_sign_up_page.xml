@@ -71,8 +71,8 @@
         android:paddingLeft="20dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_gravity="center"
-        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
         android:background="@drawable/edittextdesign"
         android:layout_marginTop="40dp"
         />

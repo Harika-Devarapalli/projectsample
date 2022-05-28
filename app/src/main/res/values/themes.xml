@@ -14,4 +14,12 @@
         <!-- Customize your theme here. -->
         <item name="fontFamily">@font/fredoka</item>
     </style>
+
+
+
+    <style name="roundImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">25dp</item>
+        <item name="color">@color/white</item>
+    </style>
 </resources>

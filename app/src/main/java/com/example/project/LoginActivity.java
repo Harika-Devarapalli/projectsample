@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
                 String phoneNum = phone.getText().toString();
                 Intent intent = new Intent(getApplicationContext(),OtpCheck.class);
                 intent.putExtra("phone",phoneNum);
-                intent.putExtra("signup",1);
+                intent.putExtra("signup",-1);
                 startActivity(intent);
                 finish();
             }

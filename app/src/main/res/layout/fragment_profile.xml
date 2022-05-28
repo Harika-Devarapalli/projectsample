@@ -28,7 +28,7 @@
 
         <TextView
             android:layout_marginTop="20dp"
-            android:id="@+id/fullname"
+            android:id="@+id/user_fullname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
@@ -39,7 +39,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/user_regNumber"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
@@ -74,25 +74,25 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_done"
-                    android:layout_centerHorizontal="true">
-                </ImageView>
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_money"></ImageView>
+
                 <TextView
+                    android:id="@+id/user_amountSpent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20"
-                    android:id="@+id/done"
-                    android:textSize="20sp"
-                    android:includeFontPadding="false"
+                    android:layout_centerInParent="true"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:textStyle="bold"
-                    android:layout_centerInParent="true"/>
+                    android:includeFontPadding="false"
+                    android:text="0"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/done"
+                    android:layout_below="@+id/user_amountSpent"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:includeFontPadding="false"
@@ -123,23 +123,24 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_money"></ImageView>
+                    android:src="@drawable/ic_done"></ImageView>
+
                 <TextView
+                    android:id="@+id/user_number_of_orders"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20"
-                    android:id="@+id/booking"
-                    android:textSize="20sp"
-                    android:includeFontPadding="false"
+                    android:layout_centerInParent="true"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:textStyle="bold"
-                    android:layout_centerInParent="true"/>
+                    android:includeFontPadding="false"
+                    android:text="0"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/bookingnumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/booking"
+                    android:layout_below="@+id/user_number_of_orders"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:includeFontPadding="false"
@@ -152,89 +153,31 @@
 
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:hint="Fullname">
+    <TextView android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:layout_weight="1" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/user_profile_cardView"
+        android:layout_width="60dp"
+        android:layout_gravity="right"
+        android:layout_height="60dp"
+        app:cardElevation="20dp"
+        android:background="#B5FBB3"
+        app:cardCornerRadius="40dp"
+        app:cardBackgroundColor="#B5FBB3"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="90dp"
+        >
+        <ImageView
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:background="@color/white"
-                android:layout_height="wrap_content"
-                android:text="HARIKA"
-                android:drawableLeft="@drawable/ic_person"
-                android:drawablePadding="7dp">
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logout" />
 
+    </androidx.cardview.widget.CardView>
 
-            </com.google.android.material.textfield.TextInputEditText>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="MailId">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:text="hi@gmail.com"
-                android:drawableLeft="@drawable/ic_mail"
-                android:drawablePadding="7dp">
-
-            </com.google.android.material.textfield.TextInputEditText>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone Number">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="123456789"
-                android:background="@color/white"
-                android:drawableLeft="@drawable/ic_phone"
-                android:drawablePadding="7dp">
-
-            </com.google.android.material.textfield.TextInputEditText>
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ratings"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:drawableLeft="@drawable/ic_star"
-                android:drawablePadding="7dp"
-                android:text="*****"
-                android:textColor="#EF6C00"
-                android:textSize="25dp">
-
-            </com.google.android.material.textfield.TextInputEditText>
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
 
 
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,13 +61,42 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
             Glide.with(context).load(imagesList.get(id_str)).into(holder.image);
         else
             Log.e("Photo Error",id_str);
-       /*holder.image.setImageBitmap(bi);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+       //holder.image.setImageBitmap(bi);
+        holder.addtocartbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                ClickListener.onAddToCartButton(menuList.get(position));
+                    char[] id = menuList.get(position).getItem_id().toCharArray();
+                    String id_str = ""+id[0]+id[1];
+                    String last_added = MyApplication.hotelName;
+                    if(id_str.equals(last_added)){
+                        CartData cartData = new CartData(menuList.get(position).getItem_name(),
+                                MyApplication.hotels.get("id_str")
+                                ,Integer.parseInt(menuList.get(position).getItem_price()));
+
+                        MyApplication.cartData.add(cartData);
+                        /*for(CartData cartData1:MyApplication.cartData)
+                            Toast.makeText(context, cartData1.itemName, Toast.LENGTH_SHORT).show();*/
+
+                    }else{
+                        //Toast.makeText(context, id_str+" "+last_added, Toast.LENGTH_SHORT).show();
+                        MyApplication.clearData();
+                        MyApplication.hotelName = id_str;
+                        CartData cartData = new CartData(menuList.get(position).getItem_name(),
+                                MyApplication.hotels.get("id_str")
+                                ,Integer.parseInt(menuList.get(position).getItem_price()));
+
+                        MyApplication.cartData.add(cartData);
+                        //Toast.makeText(context, ""+MyApplication.cartData.toString(), Toast.LENGTH_SHORT).show();
+                }
+                ClickListener.onAddToCartButton();
             }
+        });
+
+
+       /* holder.addtocartbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
         });
 */
     }
@@ -94,7 +124,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
     }
     public interface MenuListClickListener
     {
-        public void onAddToCartButton(Menu menu);
+        public void onAddToCartButton();
 
     }
 }

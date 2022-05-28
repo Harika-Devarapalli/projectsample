@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,6 +29,8 @@ public class OtpCheck extends AppCompatActivity {
     EditText otp_input;
     Button submit;
     String phoneNumber,sentCode;
+    UserDetails userDetails;
+    static int flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,17 +38,18 @@ public class OtpCheck extends AppCompatActivity {
 
         phoneNumber = "+91";
         sentCode = "";
+        userDetails = null;
+        flag = -1;
 
         otp_input = findViewById(R.id.otp_phone_number);
         submit = findViewById(R.id.otp_submit_button);
 
 
 
-        int flag = getIntent().getIntExtra("signup",-1);
+        flag = getIntent().getIntExtra("signup",-1);
         if(flag==1){
-
-        }else{
-
+            userDetails = getIntent().getParcelableExtra("userdetails");
+            Toast.makeText(this, ""+userDetails.getName(), Toast.LENGTH_SHORT).show();
         }
 
         String phone = getIntent().getStringExtra("phone");
@@ -110,8 +114,31 @@ public class OtpCheck extends AppCompatActivity {
                     FirebaseUser user = task.getResult().getUser();
                     long c_time = user.getMetadata().getCreationTimestamp();
                     long n_time = user.getMetadata().getLastSignInTimestamp();
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    finish();
+                    if(c_time == n_time){
+                        if(flag==-1){
+                            user.delete();
+                            Toast.makeText(OtpCheck.this, "Create Account First !!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(),SignUpPage.class));
+                        }else{
+                            String uID = user.getUid();
+                            FirebaseDatabase.getInstance().getReference().child("Users").child(uID).setValue(userDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(OtpCheck.this, "User Created Successfully...!", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                    finish();
+                                }
+                            });
+                        }
+                    }else{
+
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        finish();
+
+                    }
+                    
+                    
+
                 }else{
                     Toast.makeText(OtpCheck.this, "Error!!", Toast.LENGTH_SHORT).show();
                 }

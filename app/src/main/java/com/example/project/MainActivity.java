@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //getSupportActionBar().hide();
 
+        MyApplication.addHotelData();
         FirebaseApp.initializeApp(/*context=*/ this);
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
         firebaseAppCheck.installAppCheckProviderFactory(
@@ -95,19 +96,14 @@ public class MainActivity extends AppCompatActivity {
                 //ActionBar actionBar = getSupportActionBar();
                 switch (item.getItemId()) {
                     case R.id.item_cart:
-                        bottomNavigationView.setItemIconTintList( new ColorStateList(states, colorsRed));
+                        bottomNavigationView.setItemIconTintList( new ColorStateList(states, colorsPurple));
                         fragment = new ShopFragment();
 
                         //actionBar.setTitle("Cart");
                         break;
                     case R.id.item_home:
-                        bottomNavigationView.setItemIconTintList( new ColorStateList(states, colorsPurple));
+                        bottomNavigationView.setItemIconTintList( new ColorStateList(states, colorsRed));
                         fragment = new RecommendedFragments();
-                        //actionBar.setTitle("Restaurnt List");
-                        break;
-                    case R.id.item_search:
-                        bottomNavigationView.setItemIconTintList( new ColorStateList(states, colorsCyan));
-                        fragment = new SearchFragment();
                         //actionBar.setTitle("Restaurnt List");
                         break;
                     case R.id.item_profile:

@@ -1,5 +1,6 @@
 package com.example.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,9 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
     String name="";
     HashMap<String, String> imageList;
     RecyclerView recyclerView;
+    TextView title,address,rating,item_count,items_cost_total;
+    static int countOfItems  = 0 ;
+    com.google.android.material.card.MaterialCardView submit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,15 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
 //        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
 //        toolbar.setTitle(restaurantData.getName());
         name = restaurantData.getName();
+        title = findViewById(R.id.restaurant_title);
+        address  = findViewById(R.id.restaurantAddress);
+        rating = findViewById(R.id.Restaurant_Rating);
+        item_count = findViewById(R.id.item_count_update);
+        items_cost_total = findViewById(R.id.items_total_cost);
+
+        title.setText(restaurantData.getName());
+        address.setText(restaurantData.getAddress());
+        rating.setText(restaurantData.getRating());
 
 
         imageList = new HashMap<>();
@@ -45,10 +58,15 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
         menuListSend = new ArrayList<>();
         initRecyclerview();
 
-        TextView submit=findViewById(R.id.submit);
+        submit =findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),CheckoutActivity.class);
+                intent.putExtra("hotelname",name);
+                startActivity(intent);
+
+
             }
         });
     }
@@ -81,7 +99,21 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
     }
 
     @Override
-    public void onAddToCartButton(Menu menu) {
+    public void onAddToCartButton() {
+        List<CartData> cartData =  MyApplication.cartData;
+        int currentCostFinal = 0;
+        int count = 0;
+        for(CartData cart:cartData){
+            currentCostFinal += cart.price;
+            count++;
+        }
+        if(count == 1){
+            item_count.setText("1 ITEM");
+        }else if(count>1){
+            item_count.setText(count+" ITEMS");
+        }
+
+        items_cost_total.setText(currentCostFinal+"");
 
     }
 

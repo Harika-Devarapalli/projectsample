@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="10dp"
-    android:background="#FDFBF7"
-    android:paddingBottom="5dp"
-    android:orientation="vertical">
-
-    <androidx.cardview.widget.CardView
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/cardview"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
-        android:padding="15dp"
+        android:elevation="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="15dp"
+        app:cardElevation="15dp"
         >
-
         <LinearLayout
             android:id="@+id/linear"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="horizontal">
-            <ImageView
+            <androidx.cardview.widget.CardView
                 android:layout_gravity="center"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
-                android:id="@+id/image"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                />
+                app:cardCornerRadius="32dp"
+                android:padding="5dp"
+                >
+                <ImageView
+                    android:layout_width="170dp"
+                    android:layout_height="210dp"
+                    android:id="@+id/image"
+                    android:layout_gravity="center"
+                    android:scaleType="centerInside"
+                    android:adjustViewBounds="true"
+                    />
+            </androidx.cardview.widget.CardView>
             <LinearLayout
                 android:id="@+id/linearInside"
                 android:layout_width="0dp"
@@ -44,41 +48,40 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:paddingTop="15dp"
+
                     android:layout_marginRight="5dp"
                     android:layout_gravity="center"
                     android:id="@+id/menuName"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
                     android:textColor="@color/b2"
                     android:textSize="17dp"
                     android:layout_marginLeft="5dp"
+                    android:text="Food Item"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/menuprice"
                     android:layout_width="84dp"
-                    android:layout_height="0dp"
-                    android:layout_weight=".5"
-                    android:textColor="@color/b3"
+                    android:layout_height="wrap_content"
+                    android:textColor="#2B3B77"
                     android:textSize="14dp"
+                    android:layout_marginTop="4dp"
                      />
 
                 <TextView
                     android:id="@+id/addtocartbutton"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.7"
-                    android:layout_marginLeft="20dp"
+                    android:layout_height="22dp"
+                    android:layout_marginLeft="32dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="32dp"
                     android:gravity="center"
                     android:background="@drawable/backgroundsubmit"
                     android:text="Add To Cart"
-                    android:textColor="@color/b3"
+                    android:textColor="#212F67"
                     android:textSize="13dp"
-                     />
+                    />
 
 
 
@@ -93,7 +96,6 @@
 
     </androidx.cardview.widget.CardView>
 
-</LinearLayout>
 
 
 <!---

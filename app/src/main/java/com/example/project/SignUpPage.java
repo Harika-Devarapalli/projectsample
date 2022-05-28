@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ public class SignUpPage extends AppCompatActivity {
     Spinner gender;
     Button button;
     TextView signIn;
+    String gender_selected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,19 +34,38 @@ public class SignUpPage extends AppCompatActivity {
 
 
         gender = findViewById(R.id.otp_gender);
+
+
+        gender_selected = "";
         ArrayList<String> genders = new ArrayList<>();
         genders.add(new String("Gender"));
         genders.add(new String("Male"));
         genders.add(new String("Female"));
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(getApplicationContext(), androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item,genders);
         gender.setAdapter(genderAdapter);
+        gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                gender_selected = genders.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         button = findViewById(R.id.signup_submit);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String phoneNum = phone.getText().toString();
-                UserDetails userDetails = new UserDetails();
+                UserDetails userDetails = new UserDetails(
+                        name.getText().toString(),
+                        phoneNum,
+                        collegeid.getText().toString(),
+                        gender_selected
+                );
                 Intent intent = new Intent(getApplicationContext(),OtpCheck.class);
                 intent.putExtra("phone",phoneNum);
                 intent.putExtra("signup",1);
