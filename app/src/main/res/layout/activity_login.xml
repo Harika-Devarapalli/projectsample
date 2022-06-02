@@ -64,7 +64,7 @@
                     android:textSize="19dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#3CC6E8"
+                    android:textColor="@color/b2"
                     android:text="Sign Up"/>
             </LinearLayout>
 
