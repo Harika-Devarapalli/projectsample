@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -83,6 +84,7 @@ public class ShopFragment extends Fragment {
     }
 
     public void setRecyclerAndData(){
+        Collections.reverse(orders);
         OrdersRecyclerAdapter ordersAdapter = new OrdersRecyclerAdapter(getContext(),orders);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(ordersAdapter);
