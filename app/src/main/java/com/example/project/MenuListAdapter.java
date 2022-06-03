@@ -1,7 +1,9 @@
 package com.example.project;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,7 +82,8 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
 
                     }else{
                         //Toast.makeText(context, id_str+" "+last_added, Toast.LENGTH_SHORT).show();
-                        MyApplication.clearData();
+                        //int flag = RestarunantMenu.showWarning();
+                        MyApplication.clearData(context);
                         MyApplication.hotelName = id_str;
                         CartData cartData = new CartData(menuList.get(position).getItem_name(),
                                 MyApplication.hotels.get("id_str")

@@ -83,9 +83,6 @@ public class MainActivity extends AppCompatActivity {
         ColorStateList myList = new ColorStateList(states, colorsCyan);
 
 
-
-
-
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.fragment_recomended);
         getSupportFragmentManager().beginTransaction().replace(R.id.body,new RecommendedFragments()).commit();

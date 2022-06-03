@@ -1,5 +1,8 @@
 package com.example.project;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +27,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class RestarunantMenu extends AppCompatActivity implements MenuListAdapter.MenuListClickListener{
+
+
+    private static Context context;
     private List<Menu>menuList;
     private List<MenuRead>menuListSend;
     private MenuListAdapter menuListAdapter;
@@ -33,12 +39,14 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
     TextView title,address,rating,item_count,items_cost_total;
     static int countOfItems  = 0 ;
     com.google.android.material.card.MaterialCardView submit;
+    boolean runResume;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restarunant_menu);
         RestaurantModel restaurantData=getIntent().getParcelableExtra("RestaurantModel");
 
+//        Toast.makeText(this, "Activity Start aindi", Toast.LENGTH_SHORT).show();
 //        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
 //        toolbar.setTitle(restaurantData.getName());
         name = restaurantData.getName();
@@ -48,14 +56,24 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
         item_count = findViewById(R.id.item_count_update);
         items_cost_total = findViewById(R.id.items_total_cost);
 
+        context = this;
+
+        runResume = false;
+        items_cost_total.setText(0+"");
+        item_count.setText("0 ITEMS");
         title.setText(restaurantData.getName());
         address.setText(restaurantData.getAddress());
         rating.setText(restaurantData.getRating());
 
 
+        if(MyApplication.cartData.size()!=0){
+            showWarning();
+        }
+
         imageList = new HashMap<>();
         menuList = new ArrayList<>();
         menuListSend = new ArrayList<>();
+
         initRecyclerview();
 
         submit =findViewById(R.id.submit);
@@ -64,6 +82,7 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),CheckoutActivity.class);
                 intent.putExtra("hotelname",name);
+                MyApplication.MenuLastAddedName = name;
                 startActivity(intent);
 
 
@@ -74,7 +93,9 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
       {
         recyclerView=findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        //MyApplication.cartData = null;
+          items_cost_total.setText(0+"");
+          item_count.setText("0 ITEMS");
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Photo").child("Item");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -98,6 +119,41 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
 
     }
 
+
+    public static void showWarning(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("There are Items Existing in Cart");
+        builder.setMessage("Remove and Add New Item?");
+
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing but close the dialog
+
+            MyApplication.clearData(builder.getContext());
+            dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Context context_current = builder.getContext();
+                Intent intent = new Intent(context_current,CheckoutActivity.class);
+                context_current.startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+
+
+        alert.show();
+
+    }
+
     @Override
     public void onAddToCartButton() {
         List<CartData> cartData =  MyApplication.cartData;
@@ -114,6 +170,11 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
         }
 
         items_cost_total.setText(currentCostFinal+"");
+
+        if(cartData.isEmpty()){
+            items_cost_total.setText(0+"");
+            item_count.setText("0 ITEMS");
+        }
 
     }
 
@@ -136,5 +197,18 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
 
             }
         });
+    }
+
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        if(runResume){
+            onAddToCartButton();
+        }
+        else{
+
+        runResume = true;
+        }
     }
 }

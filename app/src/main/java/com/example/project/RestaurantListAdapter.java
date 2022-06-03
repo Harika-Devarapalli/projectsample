@@ -58,6 +58,9 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     public int getItemCount() {
         return restaurantModelList.size();
     }
+
+
+
     static class MyViewHolder extends RecyclerView.ViewHolder
     {
         TextView restaurantTitle;

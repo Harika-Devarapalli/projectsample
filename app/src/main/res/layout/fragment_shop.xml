@@ -4,16 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_shop"
-    android:background="#FB0B0B"
+    android:background="@drawable/fruits_colorful"
 
     tools:context=".ShopFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_gravity="center"
-        android:gravity="center"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Shop" />
+        android:id="@+id/orders_recycler_view"/>
+
 
 </FrameLayout>
