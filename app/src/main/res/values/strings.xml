@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">project</string>
+    <string name="app_name">Lets Eat</string>
     <string name="home_text"> Home </string>
     <string name="search_text"> Search </string>
     <string name="cart_text"> Cart </string>

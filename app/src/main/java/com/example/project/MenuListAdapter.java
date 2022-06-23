@@ -58,11 +58,11 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
         });
         char[] id = menuList.get(position).getItem_id().toCharArray();
         String id_str = ""+id[2]+id[3];
-        Log.e("id",id_str);
+        //Log.e("id",id_str);
         if(imagesList.containsKey(id_str))
             Glide.with(context).load(imagesList.get(id_str)).into(holder.image);
         else
-            Log.e("Photo Error",id_str);
+            Log.e("Photo Error",menuList.get(position).getItem_name()+"   "+id_str);
        //holder.image.setImageBitmap(bi);
         holder.addtocartbutton.setOnClickListener(new View.OnClickListener() {
             @Override

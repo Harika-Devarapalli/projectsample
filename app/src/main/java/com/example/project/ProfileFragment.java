@@ -25,12 +25,18 @@ public class ProfileFragment extends Fragment {
     TextView username,userRegId,deliveries,amount;
     androidx.cardview.widget.CardView cardView;
     FirebaseAuth firebaseAuth;
+    LoadingDialog loadingDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
+
+
+
+        loadingDialog = new LoadingDialog(getActivity());
+        loadingDialog.load();
 
         username = root.findViewById(R.id.user_fullname);
         userRegId = root.findViewById(R.id.user_regNumber);
@@ -73,6 +79,7 @@ public class ProfileFragment extends Fragment {
 
 
     public void setValues(UserDetails userDetails){
+        loadingDialog.dismisss();
         username.setText(userDetails.getName());
         userRegId.setText(userDetails.getRegId());
     }

@@ -37,6 +37,8 @@ public class RecommendedFragments extends Fragment  implements RestaurantListAda
     View root;
     List<RestaurantModel> restaurantModelList;
     RestaurantListAdapter adapter;
+    LoadingDialog loadingDialog;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,6 +46,9 @@ public class RecommendedFragments extends Fragment  implements RestaurantListAda
         root = inflater.inflate(R.layout.fragment_recommended_fragments, container, false);
 
 
+
+        loadingDialog = new LoadingDialog(getActivity());
+        loadingDialog.load();
 
         restaurantModelList = new ArrayList<>();
         adapter=new RestaurantListAdapter(restaurantModelList,this);
@@ -91,6 +96,7 @@ public class RecommendedFragments extends Fragment  implements RestaurantListAda
                     //Log.e("child is",child.getName());
                     restaurantModelList.add(child);
                 }
+                loadingDialog.dismisss();
                 adapter.notifyDataSetChanged();
             }
 

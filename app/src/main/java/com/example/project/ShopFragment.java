@@ -31,29 +31,49 @@ public class ShopFragment extends Fragment {
 
 
     List<OrderRetreiveHelper> orders;
+    List<String> OrderIds;
     RecyclerView recyclerView;
+    OrdersRecyclerAdapter ordersAdapter;
+
+    LoadingDialog loadingDialog;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_shop, container, false);
+
+
+        loadingDialog = new LoadingDialog(getActivity());
+        loadingDialog.load();
+
         orders = new ArrayList<>();
+        OrderIds = new ArrayList<>();
         recyclerView = root.findViewById(R.id.orders_recycler_view);
+        ordersAdapter = new OrdersRecyclerAdapter(getContext(),orders,OrderIds);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(ordersAdapter);
 
        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         Query query = reference.orderByChild("date_time");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
+                    orders.clear();
+                    OrderIds.clear();
+                    Log.e("retreived Data",snapshot.toString());
                     for(DataSnapshot child:snapshot.getChildren()){
                         OrderRetreiveHelper order = child.getValue(OrderRetreiveHelper.class);
                         orders.add(order);
+                        OrderIds.add(child.getKey());
                         Log.e("order",child.toString());
                         Log.e("Date is ",getTimeDate(order.getDate_time()));
                     }
                     setRecyclerAndData();
                 }
+
             }
 
             @Override
@@ -61,12 +81,6 @@ public class ShopFragment extends Fragment {
 
             }
         });
-
-
-
-
-
-
 
 
 
@@ -85,9 +99,7 @@ public class ShopFragment extends Fragment {
 
     public void setRecyclerAndData(){
         Collections.reverse(orders);
-        OrdersRecyclerAdapter ordersAdapter = new OrdersRecyclerAdapter(getContext(),orders);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(ordersAdapter);
+        loadingDialog.dismisss();
         ordersAdapter.notifyDataSetChanged();
 
     }

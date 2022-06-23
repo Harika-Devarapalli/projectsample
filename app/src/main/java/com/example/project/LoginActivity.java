@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         phone = findViewById(R.id.input_phone_number);
         Signup = findViewById(R.id.signin_signup);
         submit = findViewById(R.id.phone_submit_button);

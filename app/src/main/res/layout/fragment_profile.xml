@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#B5FBB3"
+    android:background="#E0F8DF"
     android:orientation="vertical"
     android:id="@+id/fragment_profile"
     tools:context=".ProfileFragment">
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:id="@+id/relative"
-        android:background="#B5FBB3"
+        android:background="#DCFBDB"
         android:orientation="vertical"
         >
 
@@ -34,7 +34,7 @@
             android:fontFamily="@font/montserrat"
             android:includeFontPadding="false"
             android:layout_gravity="center"
-            android:text="Eat More"
+            android:text=""
             android:textSize="40dp"
             android:textStyle="bold"/>
 
@@ -44,7 +44,7 @@
             android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed-medium"
-            android:text="eat_more"
+            android:text=""
             android:textSize="30dp"
             android:includeFontPadding="false"
             />
@@ -153,6 +153,7 @@
 
 
     </LinearLayout>
+
 
     <TextView android:layout_height="0dp"
         android:layout_width="fill_parent"

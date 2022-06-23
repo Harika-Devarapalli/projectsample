@@ -49,6 +49,8 @@
             android:gravity="center"
             android:orientation="vertical">
 
+
+
             <TextView
 
                 android:layout_marginRight="5dp"
@@ -139,6 +141,34 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="84dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#2B3B77"
+                    android:textSize="14dp"
+                    android:text="Item Count : "
+                    android:layout_marginTop="4dp"
+                    />
+                <TextView
+                    android:id="@+id/orders_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#2B3B77"
+                    android:textSize="14dp"
+                    android:text="Placed"
+                    android:padding="4dp"
+                    android:background="@drawable/backgroundsubmit"
+                    android:layout_marginTop="4dp"
+                    />
+
+            </LinearLayout>
 
 
 

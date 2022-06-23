@@ -40,6 +40,11 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
     static int countOfItems  = 0 ;
     com.google.android.material.card.MaterialCardView submit;
     boolean runResume;
+    float deliveryCharge = 10;
+
+
+    LoadingDialog loadingDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +54,19 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
 //        Toast.makeText(this, "Activity Start aindi", Toast.LENGTH_SHORT).show();
 //        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
 //        toolbar.setTitle(restaurantData.getName());
+
+
         name = restaurantData.getName();
+        deliveryCharge = restaurantData.getDelivery_charge();
         title = findViewById(R.id.restaurant_title);
         address  = findViewById(R.id.restaurantAddress);
         rating = findViewById(R.id.Restaurant_Rating);
         item_count = findViewById(R.id.item_count_update);
         items_cost_total = findViewById(R.id.items_total_cost);
+
+        loadingDialog = new LoadingDialog(this);
+        loadingDialog.load2();
+
 
         context = this;
 
@@ -82,8 +94,46 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),CheckoutActivity.class);
                 intent.putExtra("hotelname",name);
+                intent.putExtra("delivery_charge",deliveryCharge);
+
+                List<CartData> cartData =  MyApplication.cartData;
+                int currentCostFinal = 0;
+                int count = 0;
+                for(CartData cart:cartData){
+                    currentCostFinal += cart.price;
+                    count++;
+                }
+
+
+                intent.putExtra("items_cost",currentCostFinal);
+                intent.putExtra("item_count",count);
+
+
+                if(count == 0){
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RestarunantMenu.this);
+
+                    builder.setTitle("Error");
+                    builder.setMessage("Please Add Items To Cart First");
+
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do nothing but close the dialog
+
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+
+
+                }else{
+
                 MyApplication.MenuLastAddedName = name;
                 startActivity(intent);
+                }
 
 
             }
@@ -189,6 +239,7 @@ public class RestarunantMenu extends AppCompatActivity implements MenuListAdapte
                     Menu menu = child.getValue(Menu.class);
                     menuListSend.add(new MenuRead(menu.getItem_name(),menu.getItem_price(),child.getKey()));
                 }
+                loadingDialog.dismisss();
                 menuListAdapter.notifyDataSetChanged();
             }
 

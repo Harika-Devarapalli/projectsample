@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="5dp"
     tools:context=".CheckoutActivity">
 
     <TextView
@@ -48,11 +49,42 @@
         android:divider="@null"
         android:dividerHeight="8sp" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/darker_gray" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="30dp">
+        android:paddingTop="30dp"
+        >
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/app_name"
+            android:text="Delivery Cost :"
+            android:textSize="16dp" />
+
+        <TextView
+
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
 
 
         <ImageView

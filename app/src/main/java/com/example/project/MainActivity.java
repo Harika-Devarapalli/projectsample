@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Window;
+import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -25,11 +26,20 @@ public class MainActivity extends AppCompatActivity {
     com.google.android.material.bottomnavigation.BottomNavigationView bottomNavigationView;
     ActionBar actionBar;
     FirebaseAuth firebaseAuth;
+    LoadingDialog loadingDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //getSupportActionBar().hide();
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
+
+        /*loadingDialog = new LoadingDialog(this);
+        loadingDialog.load();*/
+
 
         MyApplication.addHotelData();
         FirebaseApp.initializeApp(/*context=*/ this);
@@ -83,9 +93,31 @@ public class MainActivity extends AppCompatActivity {
         ColorStateList myList = new ColorStateList(states, colorsCyan);
 
 
+
+        int flag = getIntent().getIntExtra("frag",-1);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.fragment_recomended);
-        getSupportFragmentManager().beginTransaction().replace(R.id.body,new RecommendedFragments()).commit();
+
+        if(flag==-1) {
+            bottomNavigationView = findViewById(R.id.bottom_navigation);
+            bottomNavigationView.setSelectedItemId(R.id.fragment_recomended);
+            getSupportFragmentManager().beginTransaction().replace(R.id.body, new RecommendedFragments()).commit();
+        }
+        else{
+            Fragment fragment = new SearchFragment();
+            fragment = new ShopFragment();
+            bottomNavigationView.setSelectedItemId(R.id.item_cart);
+            bottomNavigationView.setItemIconTintList( new ColorStateList(states, colorsPurple));
+            getSupportFragmentManager().beginTransaction().replace(R.id.body,fragment).commit();
+        }
+
+
+
+
+
+
+
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -93,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 //ActionBar actionBar = getSupportActionBar();
                 switch (item.getItemId()) {
                     case R.id.item_cart:
-                        bottomNavigationView.setItemIconTintList( new ColorStateList(states, colorsPurple));
+                        bottomNavigationView.setItemIconTintList( new ColorStateList(states, colorsRed));
                         fragment = new ShopFragment();
 
                         //actionBar.setTitle("Cart");

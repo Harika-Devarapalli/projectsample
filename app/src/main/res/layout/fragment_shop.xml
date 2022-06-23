@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_shop"
-    android:background="@drawable/fruits_colorful"
+    android:background="@drawable/precvios_order"
 
     tools:context=".ShopFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="180dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/orders_recycler_view"/>
